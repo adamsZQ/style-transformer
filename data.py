@@ -3,6 +3,7 @@ import numpy as np
 import torchtext
 from torchtext import data
 
+from config import Config
 from utils import tensor2text
 
 class DatasetIterator(object):
@@ -67,7 +68,8 @@ def load_dataset(config, train_pos='train.pos', train_neg='train.neg',
 
 
 if __name__ == '__main__':
-    train_iter, _, _, vocab = load_dataset('../data/yelp/')
+    config = Config()
+    train_iter, _, _, vocab = load_dataset(config)
     print(len(vocab))
     for batch in train_iter:
         text = tensor2text(vocab, batch.text)
